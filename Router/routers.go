@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//  配置路由信息
+// 配置路由信息
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
@@ -19,7 +19,7 @@ func SetupRouter() *gin.Engine {
 	//登录
 	login := r.Group("/v1")
 	{
-		con :=&Controllers.UserController{}
+		con := &Controllers.UserController{}
 		login.POST("login", con.Login)
 		login.POST("register", con.Register)
 	}
@@ -27,8 +27,13 @@ func SetupRouter() *gin.Engine {
 	//jwt授权接口
 	jwt := r.Group("/v1").Use(Middlewares.JWTAuthMiddleware)
 	{
-		con :=&Controllers.UserController{}
+		con := &Controllers.UserController{}
 		jwt.GET("getInfo", con.GetInfo)
+
+		//创建标签
+		tag := &Controllers.TagController{}
+		jwt.POST("tag/create", tag.CreateTags)
+
 	}
 
 	return r

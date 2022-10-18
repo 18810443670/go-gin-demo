@@ -8,6 +8,8 @@ const (
 	NOT_FOUND_USER_ERROR  = 40002
 	USER_PASSWORD_ERROR   = 40003
 	USERNAME_EXISTS_ERROR = 40004
+	SQL_INSERT_ERROR      = 40005
+	NOT_FOUND_TAG_ERROR   = 40006
 )
 
 var MsgFlags = map[int]string{
@@ -18,6 +20,8 @@ var MsgFlags = map[int]string{
 	NOT_FOUND_USER_ERROR:  "查无用户数据",
 	USER_PASSWORD_ERROR:   "用户密码错误",
 	USERNAME_EXISTS_ERROR: "用户名称已经存在",
+	SQL_INSERT_ERROR:      "数据写入失败",
+	NOT_FOUND_TAG_ERROR:   "标签数据不存在",
 }
 
 type RespMsg struct {
